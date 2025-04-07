@@ -137,7 +137,7 @@ function Library:Main(GName)
     MainBackground.BorderSizePixel = 0
     MainBackground.Position = UDim2.new(0.5, 0, 0.5, 0)
     MainBackground.Size = UDim2.new(0, 540, 0, 300)
-    MainBackground.Image = "rbxassetid://88508020329906"
+    MainBackground.Image = "rbxassetid://78505844559912"
     Drag(MainBackground)
 
     zzUIS.InputBegan:connect(function(v)
