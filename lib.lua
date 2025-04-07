@@ -132,11 +132,12 @@ function Library:Main(GName)
     MainBackground.Name = "MainBackground"
     MainBackground.Parent = UIRevamp
     MainBackground.AnchorPoint = Vector2.new(0.5, 0.5)
-    MainBackground.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    MainBackground.BackgroundColor3 = Color3.fromRGB(255, 105, 180)  -- Màu hồng
     MainBackground.BorderSizePixel = 0
     MainBackground.Position = UDim2.new(0.5, 0, 0.5, 0)
     MainBackground.Size = UDim2.new(0, 540, 0, 300)
-    MainBackground.Image = "rbxassetid://16723326536"
+    -- Bỏ phần hình ảnh (Image) đi
+    MainBackground.Image = nil  
     Drag(MainBackground)
 
     zzUIS.InputBegan:connect(function(v)
@@ -144,7 +145,6 @@ function Library:Main(GName)
             MainBackground.Visible = not MainBackground.Visible
         end
     end)
-
     local zzUIS = game:GetService("UserInputService")
     -- Khởi tạo CloseButton
     local CloseButton = Instance.new("TextButton")
