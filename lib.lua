@@ -229,7 +229,7 @@ end)
     Name.Position = UDim2.new(0.0955555588, 0, 0.00700000022, 0)
     Name.Size = UDim2.new(0, 153, 0, 50)
     Name.Font = Enum.Font.Gotham
-    Name.Text = "Spectra"
+    Name.Text = "Grayx"
     Name.TextColor3 = Color3.fromRGB(255, 255, 255)
     Name.TextSize = 27.000
     Name.TextXAlignment = Enum.TextXAlignment.Left
