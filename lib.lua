@@ -1853,6 +1853,7 @@ end)
     end
 
     return TabLibrary
+
 end
 
-return TabLibrary
+return Library
