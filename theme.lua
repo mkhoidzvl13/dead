@@ -9,15 +9,15 @@ return {
     {
         Name = "Valentines Day",
         Background = "rbxassetid://78505844559912",
-        Logo = "rbxassetid://107961805648748",
+        Logo = "rbxassetid://86024897947944",
         Color1 = Color3.fromRGB(169, 169, 169),  -- Màu xám
-        Color1 = Color3.fromRGB(169, 169, 169)   -- Màu trắng
+        Color2 = Color3.fromRGB(255, 255, 255)   -- Màu trắng
     },
     {
         Name = "Orange Red",
         Background = "rbxassetid://78505844559912",
-        Logo = "rbxassetid://8744739134",
+        Logo = "rbxassetid://86024897947944",
         Color1 = Color3.fromRGB(169, 169, 169),  -- Màu xám
-        Color1 = Color3.fromRGB(169, 169, 169)   -- Màu trắng
+        Color2 = Color3.fromRGB(255, 255, 255)   -- Màu trắng
     },
 }
