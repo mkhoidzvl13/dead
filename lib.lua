@@ -225,7 +225,7 @@ end)
     Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Name.BackgroundTransparency = 1.000
     Name.BorderSizePixel = 0
-    Name.Position = UDim2.new(0.0955555588, 0, 0.00700000022, 0)
+    Name.Position = UDim2.new(0.0955555588, 0, 0.05, 0)  -- Adjusted Y Position to move the text down
     Name.Size = UDim2.new(0, 153, 0, 50)
     Name.Font = Enum.Font.GothamBold  -- Set font to bold
     Name.Text = "Grayx"
@@ -235,8 +235,10 @@ end)
     Name.TextYAlignment = Enum.TextYAlignment.Top  -- Added Y Alignment
     Name.Visible = true  -- Ensure the text label is visible
     Name.ZIndex = 10  -- Ensure the text label is on top of other UI elements
+    
     -- Check if the background image or other elements are causing any issues
-    MainBackground.BackgroundTransparency = 0.5  -- Set a transparency so we can see the background    
+    MainBackground.BackgroundTransparency = 0.5  -- Set a transparency so we can see the background
+    
     
     
 
