@@ -146,44 +146,199 @@ function Library:Main(GName)
     end)
 
     local zzUIS = game:GetService("UserInputService")
--- Khởi tạo CloseButton
-local CloseButton = Instance.new("TextButton")
-CloseButton.Name = "CloseButton"
-CloseButton.Parent = MainBackground
-CloseButton.AnchorPoint = Vector2.new(0, 0)
-CloseButton.Position = UDim2.new(0, 10, 0, 10)
-CloseButton.Size = UDim2.new(0, 30, 0, 30)
-CloseButton.Text = "-"
-CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  
-CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseButton.Font = Enum.Font.SourceSans
-CloseButton.TextSize = 24
-
--- Tạo chữ Grayx để nhấn vào khi UI bị ẩn
-local GrayxLabel = Instance.new("TextButton")
-GrayxLabel.Name = "GrayxLabel"
-GrayxLabel.Parent = game.CoreGui
-GrayxLabel.Position = UDim2.new(0.5, -50, 0.5, 0)
-GrayxLabel.Size = UDim2.new(0, 100, 0, 50)
-GrayxLabel.Text = "Grayx"
-GrayxLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-GrayxLabel.BackgroundTransparency = 1
-GrayxLabel.Font = Enum.Font.SourceSans
-GrayxLabel.TextSize = 30
-GrayxLabel.Visible = false  -- Ẩn chữ Grayx ban đầu
-
--- Ẩn UI khi nhấn nút "-"
-CloseButton.MouseButton1Click:Connect(function()
-    MainBackground.Visible = false
-    GrayxLabel.Visible = true  -- Hiển thị chữ Grayx khi UI bị ẩn
+    local zzUIS = game:GetService("UserInputService")
+    local zzTweenService = game:GetService("TweenService")
+    local zzLPlayer = game:GetService("Players").LocalPlayer
+    local zzMouse = zzLPlayer:GetMouse()
+    local zzRS = game:GetService("RunService")
+    local zzTextService = game:GetService("TextService")
+    local zzHttpService = game:GetService("HttpService")
+    local zzContentProvider = game:GetService("ContentProvider")
+    local Themes = loadstring(game:HttpGet("https://raw.githubusercontent.com/mkhoidzvl13/dead/refs/heads/main/theme.lua", true))()
+    
+    task.spawn(function() 
+        for _,v in pairs(Themes) do
+            local LogoPreload = Instance.new("Decal")
+            LogoPreload.Texture = v.Logo
+            local BackgroundPreload = Instance.new("Decal")
+            BackgroundPreload.Texture = v.Background
+            zzContentProvider:PreloadAsync({LogoPreload, BackgroundPreload})
+        end
+    end)
+    
+    local RainbowSpeed = 7
+    local Theme = Themes[1]
+    local ToggleKeybind = "Insert"
+    local IsFocused = false
+    local IList = {} 
+    
+    function Ripple(Button) 
+        Button.ClipsDescendants = true
+        if Button:FindFirstChild("Circle") then return end
+        task.spawn(function()
+            local NewCircle = Instance.new("ImageLabel")
+            NewCircle.Name = "NewCircle"
+            NewCircle.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+            NewCircle.BackgroundTransparency = 1.000
+            NewCircle.BorderSizePixel = 0
+            NewCircle.Size = UDim2.new(0, 100, 0, 100)
+            NewCircle.ZIndex = 10
+            NewCircle.Image = "rbxassetid://266543268"
+            NewCircle.ImageTransparency = 0.89999997615814
+            NewCircle.Parent = Button
+            NewCircle.Position = UDim2.new(0, zzMouse.X - NewCircle.AbsolutePosition.X, 0, zzMouse.Y - NewCircle.AbsolutePosition.Y)
+    
+            local Size = 0
+    
+            if Button.AbsoluteSize.X > Button.AbsoluteSize.Y then
+                Size = Button.AbsoluteSize.X * 1.5
+            elseif Button.AbsoluteSize.X < Button.AbsoluteSize.Y then
+                Size = Button.AbsoluteSize.Y * 1.5
+            elseif Button.AbsoluteSize.X == Button.AbsoluteSize.Y then
+                Size = Button.AbsoluteSize.X * 1.5
+            end
+            NewCircle:TweenSizeAndPosition(UDim2.new(0, Size, 0, Size), UDim2.new(0.5, -Size / 2, 0.5, -Size / 2), "Out", "Quad", 0.5)
+            for Index = 1, 10 do
+                NewCircle.ImageTransparency = NewCircle.ImageTransparency + 0.01
+                wait(0.5 / 10)
+            end
+            NewCircle:Destroy()
+        end)
+    end
+    
+    local DraggingColorpicker = false
+    function Drag(obj) 
+        local dragging, dragInput, dragStart, startPos
+    
+        local function update(input)
+            local delta = input.Position - dragStart
+            obj.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+        end
+    
+        obj.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 or
+                input.UserInputType == Enum.UserInputType.Touch then
+                if not DraggingColorpicker then
+                    dragging = true
+                    dragStart = input.Position
+                    startPos = obj.Position
+                    input.Changed:Connect(function()
+                        if input.UserInputState == Enum.UserInputState.End then
+                            dragging = false
+                        end
+                    end)
+                end
+            end
+        end)
+    
+        obj.InputChanged:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseMovement or
+                input.UserInputType == Enum.UserInputType.Touch then
+                dragInput = input
+            end
+        end)
+    
+        zzUIS.InputChanged:Connect(function(input)
+            if input == dragInput and dragging then update(input) end
+        end)
+    end
+    
+    function randomString(v)
+        local string = ""
+        for i = 1, v do string = string .. string.char(math.random(32, 126)) end
+        return string
+    end
+    
+    local Library = {}
+    
+    function Library:Main(GName)
+    
+        local UIRevamp = Instance.new("ScreenGui")
+        local MainBackground = Instance.new("ImageLabel")
+        local Bar = Instance.new("Frame")
+        local Logo = Instance.new("ImageButton")
+        local Name = Instance.new("TextLabel")
+        local GameName = Instance.new("TextLabel")
+        local MainBackgroundUICorner = Instance.new("UICorner")
+        local ContainerContainer = Instance.new("Folder")
+        local TabContainer = Instance.new("ScrollingFrame")
+        local TabUIListLayout = Instance.new("UIListLayout")
+        local Notifications = Instance.new("Folder", UIRevamp)
+    
+        if syn and syn.protect_gui then
+            syn.protect_gui(UIRevamp)
+            UIRevamp.Parent = game.CoreGui
+        elseif gethui then
+            UIRevamp.Parent = gethui()
+        else
+            UIRevamp.Parent = game.CoreGui
+        end
+    
+        UIRevamp.Name = randomString(math.random(15, 25))
+        UIRevamp.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    
+        MainBackground.Name = "MainBackground"
+        MainBackground.Parent = UIRevamp
+        MainBackground.AnchorPoint = Vector2.new(0.5, 0.5)
+        MainBackground.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        MainBackground.BorderSizePixel = 0
+        MainBackground.Position = UDim2.new(0.5, 0, 0.5, 0)
+        MainBackground.Size = UDim2.new(0, 540, 0, 300)
+        MainBackground.Image = "rbxassetid://16723326536"
+        Drag(MainBackground)
+    
+        zzUIS.InputBegan:connect(function(v)
+            if (v.KeyCode.Name == "RightControl" or v.KeyCode.Name == ToggleKeybind) and not IsFocused then
+                MainBackground.Visible = not MainBackground.Visible
+            end
+        end)
+    
+        -- Khởi tạo CloseButton
+        local CloseButton = Instance.new("TextButton")
+        CloseButton.Name = "CloseButton"
+        CloseButton.Parent = MainBackground
+        CloseButton.AnchorPoint = Vector2.new(0, 0)
+        CloseButton.Position = UDim2.new(0, 10, 0, 10)
+        CloseButton.Size = UDim2.new(0, 30, 0, 30)
+        CloseButton.Text = "-"
+        CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  
+        CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        CloseButton.Font = Enum.Font.SourceSans
+        CloseButton.TextSize = 24
+    
+        -- Tạo chữ Grayx để nhấn vào khi UI bị ẩn
+        local GrayxLabel = Instance.new("TextButton")
+        GrayxLabel.Name = "GrayxLabel"
+        GrayxLabel.Parent = game.CoreGui
+        GrayxLabel.Position = UDim2.new(0.5, -50, 0.5, 0)
+        GrayxLabel.Size = UDim2.new(0, 100, 0, 50)
+        GrayxLabel.Text = "Grayx"
+        GrayxLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        GrayxLabel.BackgroundTransparency = 1
+        GrayxLabel.Font = Enum.Font.SourceSans
+        GrayxLabel.TextSize = 30
+        GrayxLabel.Visible = false  -- Ẩn chữ Grayx ban đầu
+    
+        -- Ẩn UI khi nhấn nút "-"
+        CloseButton.MouseButton1Click:Connect(function()
+            MainBackground.Visible = false
+            GrayxLabel.Visible = true  -- Hiển thị chữ Grayx khi UI bị ẩn
+        end)
+    
+        -- Hiện lại UI khi nhấn vào chữ Grayx
+        GrayxLabel.MouseButton1Click:Connect(function()
+            MainBackground.Visible = true
+            GrayxLabel.Visible = false  -- Ẩn chữ Grayx khi UI hiển thị lại
+        end)
+    end
+    
+    
+-- Toggle UI visibility using the RightControl key or ToggleKeybind
+zzUIS.InputBegan:connect(function(v)
+    if (v.KeyCode.Name == "RightControl" or v.KeyCode.Name == ToggleKeybind) and not IsFocused then
+        MainBackground.Visible = not MainBackground.Visible
+    end
 end)
-
--- Hiện lại UI khi nhấn vào chữ Grayx
-GrayxLabel.MouseButton1Click:Connect(function()
-    MainBackground.Visible = true
-    GrayxLabel.Visible = false  -- Ẩn chữ Grayx khi UI hiển thị lại
-end
-     )
 
 
     Bar.Name = "Bar"
