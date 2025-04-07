@@ -146,7 +146,7 @@ function Library:Main(GName)
     end)
 
     local zzUIS = game:GetService("UserInputService")
-    -- Khởi tạo CloseButton
+-- Khởi tạo CloseButton
 local CloseButton = Instance.new("TextButton")
 CloseButton.Name = "CloseButton"
 CloseButton.Parent = MainBackground
@@ -154,54 +154,36 @@ CloseButton.AnchorPoint = Vector2.new(0, 0)
 CloseButton.Position = UDim2.new(0, 10, 0, 10)
 CloseButton.Size = UDim2.new(0, 30, 0, 30)
 CloseButton.Text = "-"
-CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Đặt màu nền xung quanh nút là màu đen
+CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  
 CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 CloseButton.Font = Enum.Font.SourceSans
 CloseButton.TextSize = 24
 
--- Khởi tạo Logo (ẩn ban đầu)
-local Logo = Instance.new("ImageButton")
-Logo.Parent = game.CoreGui  -- Đặt logo trong CoreGui để có thể nhìn thấy trên màn hình chính
-Logo.Position = UDim2.new(0, 10, 0, 10)
-Logo.Size = UDim2.new(0, 50, 0, 50)
-Logo.Image = "rbxassetid://86024897947944"  -- Thay thế bằng logo của bạn
-Logo.Visible = true  -- Ban đầu ẩn logo
-
--- Biến trạng thái UI
-local IsUIVisible = true  -- Theo dõi trạng thái UI
+-- Tạo chữ Grayx để nhấn vào khi UI bị ẩn
+local GrayxLabel = Instance.new("TextButton")
+GrayxLabel.Name = "GrayxLabel"
+GrayxLabel.Parent = game.CoreGui
+GrayxLabel.Position = UDim2.new(0.5, -50, 0.5, 0)
+GrayxLabel.Size = UDim2.new(0, 100, 0, 50)
+GrayxLabel.Text = "Grayx"
+GrayxLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+GrayxLabel.BackgroundTransparency = 1
+GrayxLabel.Font = Enum.Font.SourceSans
+GrayxLabel.TextSize = 30
+GrayxLabel.Visible = false  -- Ẩn chữ Grayx ban đầu
 
 -- Ẩn UI khi nhấn nút "-"
 CloseButton.MouseButton1Click:Connect(function()
     MainBackground.Visible = false
-    Logo.Visible = true  -- Hiển thị logo khi UI bị ẩn
-    IsUIVisible = false  -- Đánh dấu UI đã bị ẩn
+    GrayxLabel.Visible = true  -- Hiển thị chữ Grayx khi UI bị ẩn
 end)
 
--- Hiện lại UI khi nhấn vào logo
-Logo.MouseButton1Click:Connect(function()
+-- Hiện lại UI khi nhấn vào chữ Grayx
+GrayxLabel.MouseButton1Click:Connect(function()
     MainBackground.Visible = true
-    Logo.Visible = false  -- Ẩn logo khi UI hiển thị lại
-    IsUIVisible = true  -- Đánh dấu UI đã hiện lên lại
-end)
-
--- Hiện lại UI khi nhấn phím Ctrl
-zzUIS.InputBegan:Connect(function(input)
-    if input.KeyCode == Enum.KeyCode.LeftControl or input.KeyCode == Enum.KeyCode.RightControl then
-        if not IsUIVisible then
-            MainBackground.Visible = true
-            Logo.Visible = false  -- Ẩn logo khi UI hiển thị lại
-            IsUIVisible = true  -- Đánh dấu UI đã hiện lên lại
-        end
-    end
-end)
-    
-
--- Toggle UI visibility using the RightControl key or ToggleKeybind
-zzUIS.InputBegan:connect(function(v)
-    if (v.KeyCode.Name == "RightControl" or v.KeyCode.Name == ToggleKeybind) and not IsFocused then
-        MainBackground.Visible = not MainBackground.Visible
-    end
-end)
+    GrayxLabel.Visible = false  -- Ẩn chữ Grayx khi UI hiển thị lại
+end
+     )
 
 
     Bar.Name = "Bar"
