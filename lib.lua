@@ -1,4 +1,3 @@
--- TAKEN FROM RealzzHub FULL CREDIT: https://raw.githubusercontent.com/RealZzHub/Main/main/UILibV2.lua
 local zzUIS = game:GetService("UserInputService")
 local zzTweenService = game:GetService("TweenService")
 local zzLPlayer = game:GetService("Players").LocalPlayer
@@ -137,7 +136,7 @@ function Library:Main(GName)
     MainBackground.BorderSizePixel = 0
     MainBackground.Position = UDim2.new(0.5, 0, 0.5, 0)
     MainBackground.Size = UDim2.new(0, 540, 0, 300)
-    MainBackground.Image = "rbxassetid://78505844559912"
+    MainBackground.Image = "rbxassetid://81498264689839"
     Drag(MainBackground)
 
     zzUIS.InputBegan:connect(function(v)
@@ -219,7 +218,7 @@ end)
     Logo.BorderSizePixel = 0
     Logo.Position = UDim2.new(0, 10, 0, 10)
     Logo.Size = UDim2.new(0, 35, 0, 35)
-    Logo.Image = "rbxassetid://107961805648748"
+    Logo.Image = "rbxassetid://86024897947944"
 
     Name.Name = "Name"
     Name.Parent = MainBackground
@@ -313,7 +312,7 @@ end)
         NotificationName.Position = UDim2.new(0.13255322, 0, 0.0215053763, 0)
         NotificationName.Size = UDim2.new(0, 75, 0, 26)
         NotificationName.Font = Enum.Font.Gotham
-        NotificationName.Text = "Grayx"
+        NotificationName.Text = "Spectra"
         NotificationName.TextColor3 = Color3.fromRGB(255, 255, 255)
         NotificationName.TextSize = 16.000
         NotificationName.TextXAlignment = Enum.TextXAlignment.Left
@@ -1842,7 +1841,7 @@ end)
                 ConfigDropdown:Set(configs[1])
             end
         end)
-        CustomCredits = CustomCredits or tostring(game:HttpGet("https://raw.githubusercontent.com/mkhoidzvl13/dead/refs/heads/main/Credits.txt"))
+        CustomCredits = CustomCredits or tostring(game:HttpGet("https://raw.githubusercontent.com/RealZzHub/MainV2/main/Misc/Credits.txt"))
         local Credits = string.split((CustomCredits), ",")
         ConfigTab:NewDropdown("Credits", Credits, function(v)
             return
