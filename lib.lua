@@ -137,7 +137,7 @@ function Library:Main(GName)
     MainBackground.BorderSizePixel = 0
     MainBackground.Position = UDim2.new(0.5, 0, 0.5, 0)
     MainBackground.Size = UDim2.new(0, 540, 0, 300)
-    MainBackground.Image = "rbxassetid://81498264689839"
+    MainBackground.Image = "rbxassetid://78505844559912"
     Drag(MainBackground)
 
     zzUIS.InputBegan:connect(function(v)
@@ -1842,7 +1842,7 @@ end)
                 ConfigDropdown:Set(configs[1])
             end
         end)
-        CustomCredits = CustomCredits or tostring(game:HttpGet("https://raw.githubusercontent.com/RealZzHub/MainV2/main/Misc/Credits.txt"))
+        CustomCredits = CustomCredits or tostring(game:HttpGet("https://raw.githubusercontent.com/mkhoidzvl13/dead/refs/heads/main/Credits.txt"))
         local Credits = string.split((CustomCredits), ",")
         ConfigTab:NewDropdown("Credits", Credits, function(v)
             return
