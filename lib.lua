@@ -1851,6 +1851,3 @@ end)
 
     return TabLibrary
 
-end
-
-return Library
