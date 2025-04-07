@@ -195,7 +195,6 @@ function Library:Main(GName)
             end
         end
     end)
-end
 
 
 
@@ -235,7 +234,6 @@ end
     
     -- Check if the background image or other elements are causing any issues
     MainBackground.BackgroundTransparency = 0.5  -- Set a transparency so we can see the background
-    
     
     
 
@@ -1853,7 +1851,7 @@ end
             return
         end, false)
 
-
+    end
     return TabLibrary
 
 end
