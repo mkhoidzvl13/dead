@@ -198,6 +198,7 @@ end)
 
 
 
+
     Bar.Name = "Bar"
     Bar.Parent = MainBackground
     Bar.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
