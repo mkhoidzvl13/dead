@@ -232,6 +232,9 @@ end)
     Name.TextColor3 = Color3.fromRGB(0, 0, 0)  -- Set text color to black
     Name.TextSize = 27.000
     Name.TextXAlignment = Enum.TextXAlignment.Left
+    Name.TextYAlignment = Enum.TextYAlignment.Top  -- Added Y Alignment
+    Name.Visible = true  -- Ensure the text label is visible
+    
     
 
     GameName.Name = "GameName"
