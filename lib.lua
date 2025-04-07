@@ -145,56 +145,62 @@ function Library:Main(GName)
         end
     end)
 
-    -- Khởi tạo CloseButton
-    local CloseButton = Instance.new("TextButton")
-    CloseButton.Name = "CloseButton"
-    CloseButton.Parent = MainBackground
-    CloseButton.AnchorPoint = Vector2.new(0, 0)
-    CloseButton.Position = UDim2.new(0, 10, 0, 10)
-    CloseButton.Size = UDim2.new(0, 30, 0, 30)
-    CloseButton.Text = "-"
-    CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Đặt màu nền xung quanh nút là màu đen
-    CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    CloseButton.Font = Enum.Font.SourceSans
-    CloseButton.TextSize = 24
-    CloseButton.ZIndex = 100  -- Đảm bảo nút CloseButton luôn hiển thị trên cùng
+-- Khởi tạo CloseButton
+local CloseButton = Instance.new("TextButton")
+CloseButton.Name = "CloseButton"
+CloseButton.Parent = MainBackground
+CloseButton.AnchorPoint = Vector2.new(0, 0)
+CloseButton.Position = UDim2.new(0, 10, 0, 10)
+CloseButton.Size = UDim2.new(0, 30, 0, 30)
+CloseButton.Text = "-"  -- Ban đầu là dấu "-"
+CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Đặt màu nền xung quanh nút là màu đen
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.Font = Enum.Font.SourceSans
+CloseButton.TextSize = 24
+CloseButton.ZIndex = 100  -- Đảm bảo nút CloseButton luôn hiển thị trên cùng
 
-    -- Biến trạng thái UI
-    local IsUIVisible = true  -- Theo dõi trạng thái UI
+-- Biến trạng thái UI
+local IsUIVisible = true  -- Theo dõi trạng thái UI
 
-    -- Ẩn UI khi nhấn nút "-"
-    CloseButton.MouseButton1Click:Connect(function()
+-- Ẩn UI khi nhấn nút "-"
+CloseButton.MouseButton1Click:Connect(function()
+    if IsUIVisible then
+        MainBackground.Visible = false
+        IsUIVisible = false  -- Đánh dấu UI đã bị ẩn
+        CloseButton.Text = "+"  -- Đổi dấu thành "+"
+    else
+        MainBackground.Visible = true
+        IsUIVisible = true  -- Đánh dấu UI đã hiện lại
+        CloseButton.Text = "-"  -- Đổi dấu lại thành "-"
+    end
+end)
+
+-- Hiện lại UI khi nhấn phím Ctrl (dành cho máy tính)
+zzUIS.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.LeftControl or input.KeyCode == Enum.KeyCode.RightControl then
+        if not IsUIVisible then
+            MainBackground.Visible = true
+            IsUIVisible = true  -- Đánh dấu UI đã hiện lên lại
+            CloseButton.Text = "-"  -- Đảm bảo dấu trở lại "-"
+        end
+    end
+end)
+
+-- Toggle UI visibility using the RightControl key or ToggleKeybind
+zzUIS.InputBegan:Connect(function(v)
+    if (v.KeyCode == Enum.KeyCode.RightControl or v.KeyCode.Name == ToggleKeybind) and not IsFocused then
         if IsUIVisible then
             MainBackground.Visible = false
-            IsUIVisible = false  -- Đánh dấu UI đã bị ẩn
+            IsUIVisible = false
+            CloseButton.Text = "+"  -- Đổi dấu thành "+"
         else
             MainBackground.Visible = true
-            IsUIVisible = true  -- Đánh dấu UI đã hiện lại
+            IsUIVisible = true
+            CloseButton.Text = "-"  -- Đổi dấu lại thành "-"
         end
-    end)
+    end
+end)
 
-    -- Hiện lại UI khi nhấn phím Ctrl (dành cho máy tính)
-    zzUIS.InputBegan:Connect(function(input)
-        if input.KeyCode == Enum.KeyCode.LeftControl or input.KeyCode == Enum.KeyCode.RightControl then
-            if not IsUIVisible then
-                MainBackground.Visible = true
-                IsUIVisible = true  -- Đánh dấu UI đã hiện lên lại
-            end
-        end
-    end)
-
-    -- Toggle UI visibility using the RightControl key or ToggleKeybind
-    zzUIS.InputBegan:Connect(function(v)
-        if (v.KeyCode == Enum.KeyCode.RightControl or v.KeyCode.Name == ToggleKeybind) and not IsFocused then
-            if IsUIVisible then
-                MainBackground.Visible = false
-                IsUIVisible = false
-            else
-                MainBackground.Visible = true
-                IsUIVisible = true
-            end
-        end
-    end)
 
 
 
