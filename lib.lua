@@ -146,7 +146,7 @@ function Library:Main(GName)
     end)
 
     local zzUIS = game:GetService("UserInputService")
-    -- Khởi tạo CloseButton
+   -- Khởi tạo CloseButton
 local CloseButton = Instance.new("TextButton")
 CloseButton.Name = "CloseButton"
 CloseButton.Parent = MainBackground
@@ -165,7 +165,7 @@ Logo.Parent = game.CoreGui  -- Đặt logo trong CoreGui để có thể nhìn t
 Logo.Position = UDim2.new(0, 10, 0, 10)
 Logo.Size = UDim2.new(0, 50, 0, 50)
 Logo.Image = "rbxassetid://86024897947944"  -- Thay thế bằng logo của bạn
-Logo.Visible = true  -- Ban đầu ẩn logo
+Logo.Visible = false  -- Ban đầu ẩn logo
 
 -- Biến trạng thái UI
 local IsUIVisible = true  -- Theo dõi trạng thái UI
@@ -194,12 +194,19 @@ zzUIS.InputBegan:Connect(function(input)
         end
     end
 end)
-    
 
 -- Toggle UI visibility using the RightControl key or ToggleKeybind
-zzUIS.InputBegan:connect(function(v)
-    if (v.KeyCode.Name == "RightControl" or v.KeyCode.Name == ToggleKeybind) and not IsFocused then
-        MainBackground.Visible = not MainBackground.Visible
+zzUIS.InputBegan:Connect(function(v)
+    if (v.KeyCode == Enum.KeyCode.RightControl or v.KeyCode.Name == ToggleKeybind) and not IsFocused then
+        if IsUIVisible then
+            MainBackground.Visible = false
+            Logo.Visible = true  -- Hiển thị logo khi ẩn UI
+            IsUIVisible = false
+        else
+            MainBackground.Visible = true
+            Logo.Visible = false  -- Ẩn logo khi UI hiển thị lại
+            IsUIVisible = true
+        end
     end
 end)
 
@@ -1860,6 +1867,3 @@ end)
 
     return TabLibrary
 
-end
-
-return Library
