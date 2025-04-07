@@ -6,7 +6,7 @@ local zzRS = game:GetService("RunService")
 local zzTextService = game:GetService("TextService")
 local zzHttpService = game:GetService("HttpService")
 local zzContentProvider = game:GetService("ContentProvider")
-local Themes = loadstring(game:HttpGet("https://raw.githubusercontent.com/rustbuilderz/RBS/refs/heads/main/lib/themes.lua", true))()
+local Themes = loadstring(game:HttpGet("https://raw.githubusercontent.com/mkhoidzvl13/dead/refs/heads/main/theme.lua", true))()
 
 task.spawn(function() 
     for _,v in pairs(Themes) do
