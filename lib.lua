@@ -1853,7 +1853,6 @@ end
             return
         end, false)
 
-    end
 
     return TabLibrary
 
