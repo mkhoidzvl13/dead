@@ -162,7 +162,7 @@ function Library:Main(GName)
     
     -- Khởi tạo Logo (ẩn ban đầu)
     local Logo = Instance.new("ImageButton")
-    Logo.Parent = MainBackground
+    Logo.Parent = game.CoreGui  -- Đặt logo trong CoreGui để có thể nhìn thấy trên màn hình chính
     Logo.Position = UDim2.new(0, 10, 0, 10)
     Logo.Size = UDim2.new(0, 50, 0, 50)
     Logo.Image = "rbxassetid://86024897947944"  -- Thay thế bằng logo của bạn
@@ -174,15 +174,15 @@ function Library:Main(GName)
     -- Ẩn UI khi nhấn nút "-"
     CloseButton.MouseButton1Click:Connect(function()
         MainBackground.Visible = false
-        Logo.Visible = true
+        Logo.Visible = true  -- Hiển thị logo khi UI bị ẩn
         IsUIVisible = false  -- Đánh dấu UI đã bị ẩn
     end)
     
     -- Hiện lại UI khi nhấn vào logo
     Logo.MouseButton1Click:Connect(function()
         MainBackground.Visible = true
-        Logo.Visible = false
-        IsUIVisible = true  -- Đánh dấu UI đã hiển thị lại
+        Logo.Visible = false  -- Ẩn logo khi UI hiển thị lại
+        IsUIVisible = true  -- Đánh dấu UI đã hiện lên lại
     end)
     
     -- Hiện lại UI khi nhấn phím Ctrl
@@ -190,11 +190,12 @@ function Library:Main(GName)
         if input.KeyCode == Enum.KeyCode.LeftControl or input.KeyCode == Enum.KeyCode.RightControl then
             if not IsUIVisible then
                 MainBackground.Visible = true
-                Logo.Visible = false
+                Logo.Visible = false  -- Ẩn logo khi UI hiển thị lại
                 IsUIVisible = true  -- Đánh dấu UI đã hiện lên lại
             end
         end
-    end)    
+    end)
+    
 
 -- Toggle UI visibility using the RightControl key or ToggleKeybind
 zzUIS.InputBegan:connect(function(v)
