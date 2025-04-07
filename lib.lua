@@ -106,7 +106,7 @@ local Library = {}
 function Library:Main(GName)
 
     local UIRevamp = Instance.new("ScreenGui")
-    local MainBackground = Instance.new("ImageLabel")
+    local MainBackground = Instance.new("Frame")  -- Sử dụng Frame thay vì ImageLabel
     local Bar = Instance.new("Frame")
     local Logo = Instance.new("ImageButton")
     local Name = Instance.new("TextLabel")
@@ -135,9 +135,7 @@ function Library:Main(GName)
     MainBackground.BackgroundColor3 = Color3.fromRGB(255, 105, 180)  -- Màu hồng
     MainBackground.BorderSizePixel = 0
     MainBackground.Position = UDim2.new(0.5, 0, 0.5, 0)
-    MainBackground.Size = UDim2.new(0, 540, 0, 300)
-    -- Bỏ phần hình ảnh (Image) đi
-    MainBackground.Image = nil  
+    MainBackground.Size = UDim2.new(0, 540, 0, 300)  -- Chỉnh sửa kích thước của background
     Drag(MainBackground)
 
     zzUIS.InputBegan:connect(function(v)
@@ -145,6 +143,8 @@ function Library:Main(GName)
             MainBackground.Visible = not MainBackground.Visible
         end
     end)
+
+end
     local zzUIS = game:GetService("UserInputService")
     -- Khởi tạo CloseButton
     local CloseButton = Instance.new("TextButton")
