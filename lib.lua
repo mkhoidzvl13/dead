@@ -1853,3 +1853,6 @@ end)
     end
 
     return TabLibrary
+end
+
+return TabLibrary
