@@ -159,7 +159,7 @@ local zzUIS = game:GetService("UserInputService")
      Logo.BorderSizePixel = 0
      Logo.Position = UDim2.new(0, 10, 0, 10)
      Logo.Size = UDim2.new(0, 35, 0, 35)
-     Logo.Image = "rbxassetid://107961805648748"
+     Logo.Image = "rbxassetid://86024897947944"
  
      Name.Name = "Name"
      Name.Parent = MainBackground
@@ -265,7 +265,7 @@ local zzUIS = game:GetService("UserInputService")
          NotificationLogo.BorderSizePixel = 0
          NotificationLogo.Position = UDim2.new(0.0130000003, 0, 0.0280000009, 0)
          NotificationLogo.Size = UDim2.new(0, 26, 0, 26)
-         NotificationLogo.Image = "rbxassetid://6771656595"
+         NotificationLogo.Image = "rbxassetid://86024897947944"
  
          NotificationText.Name = "NotificationText"
          NotificationText.Parent = Notification
