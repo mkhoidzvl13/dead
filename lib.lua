@@ -36,7 +36,7 @@ function Ripple(Button)
         NewCircle.BorderSizePixel = 0
         NewCircle.Size = UDim2.new(0, 100, 0, 100)
         NewCircle.ZIndex = 10
-        NewCircle.Image = "rbxassetid://74833153314808"
+        NewCircle.Image = "rbxassetid://86024897947944"
         NewCircle.ImageTransparency = 0.89999997615814
         NewCircle.Parent = Button
         NewCircle.Position = UDim2.new(0, zzMouse.X - NewCircle.AbsolutePosition.X, 0, zzMouse.Y - NewCircle.AbsolutePosition.Y)
@@ -137,7 +137,7 @@ function Library:Main(GName)
     MainBackground.BorderSizePixel = 0
     MainBackground.Position = UDim2.new(0.5, 0, 0.5, 0)
     MainBackground.Size = UDim2.new(0, 540, 0, 300)
-    MainBackground.Image = "rbxassetid://74833153314808"
+    MainBackground.Image = "rbxassetid://78505844559912"
     Drag(MainBackground)
 
     zzUIS.InputBegan:connect(function(v)
@@ -160,7 +160,7 @@ function Library:Main(GName)
     Logo.BorderSizePixel = 0
     Logo.Position = UDim2.new(0, 10, 0, 10)
     Logo.Size = UDim2.new(0, 35, 0, 35)
-    Logo.Image = "rbxassetid://107961805648748"
+    Logo.Image = "rbxassetid://86024897947944"
 
     Name.Name = "Name"
     Name.Parent = MainBackground
@@ -266,7 +266,7 @@ function Library:Main(GName)
         NotificationLogo.BorderSizePixel = 0
         NotificationLogo.Position = UDim2.new(0.0130000003, 0, 0.0280000009, 0)
         NotificationLogo.Size = UDim2.new(0, 26, 0, 26)
-        NotificationLogo.Image = "rbxassetid://6771656595"
+        NotificationLogo.Image = "rbxassetid://86024897947944"
 
         NotificationText.Name = "NotificationText"
         NotificationText.Parent = Notification
@@ -1008,7 +1008,7 @@ function Library:Main(GName)
             DropdownToggle.Position = UDim2.new(0, 268, 0, 1)
             DropdownToggle.Rotation = -90.000
             DropdownToggle.Size = UDim2.new(0, 25, 0, 25)
-            DropdownToggle.Image = "http://www.roblox.com/asset/?id=3192533593"
+            DropdownToggle.Image = "http://www.roblox.com/asset/?id=86024897947944"
             DropdownToggle.ImageColor3 = Theme.Color1
             DropdownToggle.ScaleType = Enum.ScaleType.Crop
             table.insert(IList, DropdownToggle)
@@ -1246,7 +1246,7 @@ function Library:Main(GName)
             SatBase.BorderSizePixel = 0
             SatBase.Position = UDim2.new(0.0240638833, 0, 0.0806451589, 0)
             SatBase.Size = UDim2.new(0, 147, 0, 108)
-            SatBase.Image = "rbxassetid://11712625069"
+            SatBase.Image = "rbxassetid://86024897947944"
             SatBase.ImageColor3 = Color3.fromRGB(20, 3, 255)
             
 
@@ -1258,7 +1258,7 @@ function Library:Main(GName)
             SatButton.Position = UDim2.new(0.488000005, 0, 0.138999999, 0)
             SatButton.Size = UDim2.new(0, 11, 0, 11)
             SatButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
-            SatButton.Image = "rbxassetid://244221613"
+            SatButton.Image = "rbxassetid://86024897947944"
             SatButton.ImageColor3 = Color3.fromRGB(0, 0, 0)
 
             SatBaseUICorner.CornerRadius = UDim.new(0, 4)
@@ -1299,7 +1299,7 @@ function Library:Main(GName)
             HueButton.Position = UDim2.new(0.488000005, 0, 0.138999999, 0)
             HueButton.Size = UDim2.new(0, 11, 0, 11)
             HueButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
-            HueButton.Image = "rbxassetid://244221613"
+            HueButton.Image = "rbxassetid://86024897947944"
             HueButton.ImageColor3 = Color3.fromRGB(0, 0, 0)
 
             RainbowToggle.Name = "RainbowToggle"
