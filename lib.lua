@@ -106,7 +106,7 @@ local Library = {}
 function Library:Main(GName)
 
     local UIRevamp = Instance.new("ScreenGui")
-    local MainBackground = Instance.new("Frame")  -- Sử dụng Frame thay vì ImageLabel
+    local MainBackground = Instance.new("ImageLabel")
     local Bar = Instance.new("Frame")
     local Logo = Instance.new("ImageButton")
     local Name = Instance.new("TextLabel")
@@ -132,10 +132,11 @@ function Library:Main(GName)
     MainBackground.Name = "MainBackground"
     MainBackground.Parent = UIRevamp
     MainBackground.AnchorPoint = Vector2.new(0.5, 0.5)
-    MainBackground.BackgroundColor3 = Color3.fromRGB(255, 105, 180)  -- Màu hồng
+    MainBackground.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     MainBackground.BorderSizePixel = 0
     MainBackground.Position = UDim2.new(0.5, 0, 0.5, 0)
-    MainBackground.Size = UDim2.new(0, 540, 0, 300)  -- Chỉnh sửa kích thước của background
+    MainBackground.Size = UDim2.new(0, 540, 0, 300)
+    MainBackground.Image = "rbxassetid://16723326536"
     Drag(MainBackground)
 
     zzUIS.InputBegan:connect(function(v)
@@ -144,7 +145,6 @@ function Library:Main(GName)
         end
     end)
 
-end
     local zzUIS = game:GetService("UserInputService")
     -- Khởi tạo CloseButton
     local CloseButton = Instance.new("TextButton")
@@ -227,11 +227,11 @@ end)
     Name.BorderSizePixel = 0
     Name.Position = UDim2.new(0.0955555588, 0, 0.00700000022, 0)
     Name.Size = UDim2.new(0, 153, 0, 50)
-    Name.Font = Enum.Font.GothamBold  -- Set font to bold
+    Name.Font = Enum.Font.Gotham
     Name.Text = "Grayx"
-    Name.TextColor3 = Color3.fromRGB(0, 0, 0)  -- Set text color to black
+    Name.TextColor3 = Color3.fromRGB(255, 255, 255)
     Name.TextSize = 27.000
-    Name.TextXAlignment = Enum.TextXAlignment.Left    
+    Name.TextXAlignment = Enum.TextXAlignment.Left
 
     GameName.Name = "GameName"
     GameName.Parent = MainBackground
@@ -1718,8 +1718,8 @@ end)
     end
 
     function TabLibrary:NewConfigTab(CustomCredits) 
-        local Path = "Grayx/" .. game.GameId
-        if not isfolder("Grayx") then makefolder("Grayx") end
+        local Path = "RealZzHub/" .. game.GameId
+        if not isfolder("RealZzHub") then makefolder("RealZzHub") end
         if not isfolder(Path) then
             makefolder(Path)
         end
@@ -1834,9 +1834,9 @@ end)
                 configs = {}
                 ConfigDropdown:Clear()
                 wait(0.4)
-                for _, v in pairs(listfiles("Grayx/"..game.GameId)) do
-                    table.insert(configs, string.split(v,"Grayx/"..game.GameId.."\\")[2])
-                    ConfigDropdown:AddItem(tostring(string.split(v,"Grayx/"..game.GameId.."\\")[2]))
+                for _, v in pairs(listfiles("RealZzHub/"..game.GameId)) do
+                    table.insert(configs, string.split(v,"RealZzHub/"..game.GameId.."\\")[2])
+                    ConfigDropdown:AddItem(tostring(string.split(v,"RealZzHub/"..game.GameId.."\\")[2]))
                 end
                 ConfigDropdown:Set(configs[1])
             end
@@ -1850,3 +1850,7 @@ end)
     end
 
     return TabLibrary
+
+end
+
+return Library
