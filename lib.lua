@@ -159,6 +159,21 @@ CloseButton.Font = Enum.Font.SourceSans
 CloseButton.TextSize = 24
 CloseButton.ZIndex = 100  -- Đảm bảo nút CloseButton luôn hiển thị trên cùng
 
+-- Khởi tạo dấu "+" để hiện lại UI
+local PlusButton = Instance.new("TextButton")
+PlusButton.Name = "PlusButton"
+PlusButton.Parent = MainBackground
+PlusButton.AnchorPoint = Vector2.new(0, 0)
+PlusButton.Position = UDim2.new(0, 10, 0, 10)
+PlusButton.Size = UDim2.new(0, 30, 0, 30)
+PlusButton.Text = "+"
+PlusButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Đặt màu nền xung quanh nút là màu đen
+PlusButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+PlusButton.Font = Enum.Font.SourceSans
+PlusButton.TextSize = 24
+PlusButton.Visible = false  -- Ban đầu dấu "+" ẩn đi
+PlusButton.ZIndex = 100  -- Đảm bảo nút PlusButton luôn hiển thị trên cùng
+
 -- Biến trạng thái UI
 local IsUIVisible = true  -- Theo dõi trạng thái UI
 
@@ -168,38 +183,25 @@ CloseButton.MouseButton1Click:Connect(function()
         MainBackground.Visible = false
         IsUIVisible = false  -- Đánh dấu UI đã bị ẩn
         CloseButton.Text = "+"  -- Đổi dấu thành "+"
+        PlusButton.Visible = true  -- Hiện dấu "+"
     else
         MainBackground.Visible = true
         IsUIVisible = true  -- Đánh dấu UI đã hiện lại
         CloseButton.Text = "-"  -- Đổi dấu lại thành "-"
+        PlusButton.Visible = false  -- Ẩn dấu "+"
     end
 end)
 
--- Hiện lại UI khi nhấn phím Ctrl (dành cho máy tính)
-zzUIS.InputBegan:Connect(function(input)
-    if input.KeyCode == Enum.KeyCode.LeftControl or input.KeyCode == Enum.KeyCode.RightControl then
-        if not IsUIVisible then
-            MainBackground.Visible = true
-            IsUIVisible = true  -- Đánh dấu UI đã hiện lên lại
-            CloseButton.Text = "-"  -- Đảm bảo dấu trở lại "-"
-        end
+-- Hiện lại UI khi nhấn vào dấu "+"
+PlusButton.MouseButton1Click:Connect(function()
+    if not IsUIVisible then
+        MainBackground.Visible = true
+        IsUIVisible = true  -- Đánh dấu UI đã hiện lên lại
+        CloseButton.Text = "-"  -- Đảm bảo dấu trở lại "-"
+        PlusButton.Visible = false  -- Ẩn dấu "+"
     end
 end)
 
--- Toggle UI visibility using the RightControl key or ToggleKeybind
-zzUIS.InputBegan:Connect(function(v)
-    if (v.KeyCode == Enum.KeyCode.RightControl or v.KeyCode.Name == ToggleKeybind) and not IsFocused then
-        if IsUIVisible then
-            MainBackground.Visible = false
-            IsUIVisible = false
-            CloseButton.Text = "+"  -- Đổi dấu thành "+"
-        else
-            MainBackground.Visible = true
-            IsUIVisible = true
-            CloseButton.Text = "-"  -- Đổi dấu lại thành "-"
-        end
-    end
-end)
 
 
 
