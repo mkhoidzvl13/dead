@@ -227,11 +227,11 @@ end)
     Name.BorderSizePixel = 0
     Name.Position = UDim2.new(0.0955555588, 0, 0.00700000022, 0)
     Name.Size = UDim2.new(0, 153, 0, 50)
-    Name.Font = Enum.Font.Gotham
+    Name.Font = Enum.Font.GothamBold  -- Set font to bold
     Name.Text = "Grayx"
-    Name.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Name.TextColor3 = Color3.fromRGB(0, 0, 0)  -- Set text color to black
     Name.TextSize = 27.000
-    Name.TextXAlignment = Enum.TextXAlignment.Left
+    Name.TextXAlignment = Enum.TextXAlignment.Left    
 
     GameName.Name = "GameName"
     GameName.Parent = MainBackground
