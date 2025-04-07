@@ -166,7 +166,7 @@ function Library:Main(GName)
     Logo.Position = UDim2.new(0, 10, 0, 10)
     Logo.Size = UDim2.new(0, 50, 0, 50)
     Logo.Image = "rbxassetid://86024897947944"  -- Thay thế bằng logo của bạn
-    Logo.Visible = false  -- Ban đầu ẩn logo
+    Logo.Visible = true  -- Ban đầu ẩn logo
     
     -- Biến trạng thái UI
     local IsUIVisible = true  -- Theo dõi trạng thái UI
