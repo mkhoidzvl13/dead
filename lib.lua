@@ -234,6 +234,9 @@ end)
     Name.TextXAlignment = Enum.TextXAlignment.Left
     Name.TextYAlignment = Enum.TextYAlignment.Top  -- Added Y Alignment
     Name.Visible = true  -- Ensure the text label is visible
+    Name.ZIndex = 10  -- Ensure the text label is on top of other UI elements
+    -- Check if the background image or other elements are causing any issues
+    MainBackground.BackgroundTransparency = 0.5  -- Set a transparency so we can see the background    
     
     
 
@@ -316,7 +319,7 @@ end)
         NotificationName.Position = UDim2.new(0.13255322, 0, 0.0215053763, 0)
         NotificationName.Size = UDim2.new(0, 75, 0, 26)
         NotificationName.Font = Enum.Font.Gotham
-        NotificationName.Text = "Spectra"
+        NotificationName.Text = "Grayx"
         NotificationName.TextColor3 = Color3.fromRGB(255, 255, 255)
         NotificationName.TextSize = 16.000
         NotificationName.TextXAlignment = Enum.TextXAlignment.Left
