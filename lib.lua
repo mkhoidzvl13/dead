@@ -1718,8 +1718,8 @@ end)
     end
 
     function TabLibrary:NewConfigTab(CustomCredits) 
-        local Path = "RealZzHub/" .. game.GameId
-        if not isfolder("RealZzHub") then makefolder("RealZzHub") end
+        local Path = "Grayx/" .. game.GameId
+        if not isfolder("Grayx") then makefolder("Grayx") end
         if not isfolder(Path) then
             makefolder(Path)
         end
@@ -1834,14 +1834,14 @@ end)
                 configs = {}
                 ConfigDropdown:Clear()
                 wait(0.4)
-                for _, v in pairs(listfiles("RealZzHub/"..game.GameId)) do
-                    table.insert(configs, string.split(v,"RealZzHub/"..game.GameId.."\\")[2])
-                    ConfigDropdown:AddItem(tostring(string.split(v,"RealZzHub/"..game.GameId.."\\")[2]))
+                for _, v in pairs(listfiles("Grayx/"..game.GameId)) do
+                    table.insert(configs, string.split(v,"Grayx/"..game.GameId.."\\")[2])
+                    ConfigDropdown:AddItem(tostring(string.split(v,"Grayx/"..game.GameId.."\\")[2]))
                 end
                 ConfigDropdown:Set(configs[1])
             end
         end)
-        CustomCredits = CustomCredits or tostring(game:HttpGet("https://raw.githubusercontent.com/mkhoidzvl13/dead/refs/heads/main/Credits.txt"))
+        CustomCredits = CustomCredits or tostring(game:HttpGet("https://raw.githubusercontent.com/RealZzHub/MainV2/main/Misc/Credits.txt"))
         local Credits = string.split((CustomCredits), ",")
         ConfigTab:NewDropdown("Credits", Credits, function(v)
             return
@@ -1850,4 +1850,3 @@ end)
     end
 
     return TabLibrary
-
