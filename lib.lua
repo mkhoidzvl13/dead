@@ -35,7 +35,7 @@ local zzUIS = game:GetService("UserInputService")
          NewCircle.BorderSizePixel = 0
          NewCircle.Size = UDim2.new(0, 100, 0, 100)
          NewCircle.ZIndex = 10
-         NewCircle.Image = "rbxassetid://74833153314808"
+         NewCircle.Image = "rbxassetid://78505844559912"
          NewCircle.ImageTransparency = 0.89999997615814
          NewCircle.Parent = Button
          NewCircle.Position = UDim2.new(0, zzMouse.X - NewCircle.AbsolutePosition.X, 0, zzMouse.Y - NewCircle.AbsolutePosition.Y)
@@ -136,7 +136,7 @@ local zzUIS = game:GetService("UserInputService")
      MainBackground.BorderSizePixel = 0
      MainBackground.Position = UDim2.new(0.5, 0, 0.5, 0)
      MainBackground.Size = UDim2.new(0, 540, 0, 300)
-     MainBackground.Image = "rbxassetid://74833153314808"
+     MainBackground.Image = "rbxassetid://78505844559912"
      Drag(MainBackground)
  
      zzUIS.InputBegan:connect(function(v)
