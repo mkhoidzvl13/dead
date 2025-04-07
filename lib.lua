@@ -145,39 +145,56 @@ function Library:Main(GName)
             MainBackground.Visible = not MainBackground.Visible
         end
     end)
-     -- Thêm nút "-" để ẩn UI tạm thời
-     -- Add the Close Button to hide the UI
-local CloseButton = Instance.new("TextButton")
-CloseButton.Name = "CloseButton"
-CloseButton.Parent = MainBackground
-CloseButton.AnchorPoint = Vector2.new(0, 0)
-CloseButton.Position = UDim2.new(0, 10, 0, 10)
-CloseButton.Size = UDim2.new(0, 30, 0, 30)
-CloseButton.Text = "-"
-CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseButton.Font = Enum.Font.SourceSans
-CloseButton.TextSize = 24
 
--- Logo (When clicked, the UI will appear again)
-local Logo = Instance.new("ImageButton")
-Logo.Parent = MainBackground
-Logo.Position = UDim2.new(0, 10, 0, 10)
-Logo.Size = UDim2.new(0, 50, 0, 50)
-Logo.Image = "rbxassetid://86024897947944"  -- Replace with your logo ID
-Logo.Visible = false  -- Initially hidden
-
--- Hide the UI when the "-" button is clicked
-CloseButton.MouseButton1Click:Connect(function()
-    MainBackground.Visible = false
-    Logo.Visible = true
-end)
-
--- Show the UI when the logo is clicked
-Logo.MouseButton1Click:Connect(function()
-    MainBackground.Visible = true
-    Logo.Visible = false
-end)
+    local zzUIS = game:GetService("UserInputService")
+    -- Khởi tạo CloseButton
+    local CloseButton = Instance.new("TextButton")
+    CloseButton.Name = "CloseButton"
+    CloseButton.Parent = MainBackground
+    CloseButton.AnchorPoint = Vector2.new(0, 0)
+    CloseButton.Position = UDim2.new(0, 10, 0, 10)
+    CloseButton.Size = UDim2.new(0, 30, 0, 30)
+    CloseButton.Text = "-"
+    CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    CloseButton.Font = Enum.Font.SourceSans
+    CloseButton.TextSize = 24
+    
+    -- Khởi tạo Logo (ẩn ban đầu)
+    local Logo = Instance.new("ImageButton")
+    Logo.Parent = MainBackground
+    Logo.Position = UDim2.new(0, 10, 0, 10)
+    Logo.Size = UDim2.new(0, 50, 0, 50)
+    Logo.Image = "rbxassetid://86024897947944"  -- Thay thế bằng logo của bạn
+    Logo.Visible = false  -- Ban đầu ẩn logo
+    
+    -- Biến trạng thái UI
+    local IsUIVisible = true  -- Theo dõi trạng thái UI
+    
+    -- Ẩn UI khi nhấn nút "-"
+    CloseButton.MouseButton1Click:Connect(function()
+        MainBackground.Visible = false
+        Logo.Visible = true
+        IsUIVisible = false  -- Đánh dấu UI đã bị ẩn
+    end)
+    
+    -- Hiện lại UI khi nhấn vào logo
+    Logo.MouseButton1Click:Connect(function()
+        MainBackground.Visible = true
+        Logo.Visible = false
+        IsUIVisible = true  -- Đánh dấu UI đã hiển thị lại
+    end)
+    
+    -- Hiện lại UI khi nhấn phím Ctrl
+    zzUIS.InputBegan:Connect(function(input)
+        if input.KeyCode == Enum.KeyCode.LeftControl or input.KeyCode == Enum.KeyCode.RightControl then
+            if not IsUIVisible then
+                MainBackground.Visible = true
+                Logo.Visible = false
+                IsUIVisible = true  -- Đánh dấu UI đã hiện lên lại
+            end
+        end
+    end)    
 
 -- Toggle UI visibility using the RightControl key or ToggleKeybind
 zzUIS.InputBegan:connect(function(v)
