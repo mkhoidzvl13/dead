@@ -1,4 +1,4 @@
--- TAKEN FROM RealzzHub FULL CREDIT: https://raw.githubusercontent.com/RealZzHub/Main/main/UILibV2.lua
+
 local zzUIS = game:GetService("UserInputService")
 local zzTweenService = game:GetService("TweenService")
 local zzLPlayer = game:GetService("Players").LocalPlayer
@@ -313,7 +313,7 @@ end)
         NotificationName.Position = UDim2.new(0.13255322, 0, 0.0215053763, 0)
         NotificationName.Size = UDim2.new(0, 75, 0, 26)
         NotificationName.Font = Enum.Font.Gotham
-        NotificationName.Text = "Spectra"
+        NotificationName.Text = "Grayx"
         NotificationName.TextColor3 = Color3.fromRGB(255, 255, 255)
         NotificationName.TextSize = 16.000
         NotificationName.TextXAlignment = Enum.TextXAlignment.Left
